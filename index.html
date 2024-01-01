@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meksika Dalgası Efekti</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #mexican {
+            font-size: 3em;
+            font-family: 'Arial', sans-serif;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div id="mexican">Mexican Wave</div>
+
+    <script>
+        const wave = (str) => {
+            let result = [];
+            if([...str].length === 0) return [];
+            for(let i = 0; i < str.length; i++){
+                let copy = str.split('');
+                if(copy[i] === ' ') continue;
+                copy[i] = copy[i].toUpperCase();
+                result.push(copy.join(''));
+            }
+            return result;
+        };
+
+        const textElement = document.getElementById('mexican');
+        const originalText = 'coding coding';
+        const waveArray = wave(originalText);
+        let currentIndex = 0;
+
+        function animateWave() {
+            textElement.innerText = waveArray[currentIndex];
+            currentIndex = (currentIndex + 1) % waveArray.length;
+            setTimeout(animateWave, 200);
+        }
+
+        animateWave();
+    </script>
+</body>
+</html>
